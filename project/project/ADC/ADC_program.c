@@ -1,0 +1,57 @@
+/*
+ * ADC_program.c
+ *
+ * Created: 11/15/2021 12:59:04 PM
+ *  Author: Mina
+ */ 
+#include "ADC.h"
+
+void adc_init(void){
+	
+#if ADC_Enable == ENABLED
+    SET_BiT(ADC_ADCSRA,ADC_ADEN); //enable ADC
+	//selection for the power form
+	#if ADC_SOURCE == ADC_SOURCE_AREF
+	    CLR_Bit(ADC_ADMUX,ADC_REFS1);
+	    CLR_Bit(ADC_ADMUX,ADC_REFS0);
+	#elif ADC_SOURCE == ADC_SOURCE_AVCC
+	      CLR_Bit(ADC_ADMUX,ADC_REFS1);
+	      SET_BiT(ADC_ADMUX,ADC_REFS0);
+    #elif ADC_SOURCE == ADC_SOURCE_RES
+	      SET_BiT(ADC_ADMUX,ADC_REFS1);
+	      CLR_Bit(ADC_ADMUX,ADC_REFS0);
+    #elif ADC_SOURCE == ADC_SOURCE_INTERNAL
+	      SET_BiT(ADC_ADMUX,ADC_REFS1);
+	      SET_BiT(ADC_ADMUX,ADC_REFS0);
+    #endif
+	//SET PRESCALLER DIVISION BY FCLK/128
+	#if PRESCALLER ==  DIV_FACT_2P
+	    ADC_ADCSRA = (ADC_ADCSRA & 0b11111000) | DIV_FACT_2P ;
+	#elif PRESCALLER == DIV_FACT_2_2P
+	    ADC_ADCSRA = (ADC_ADCSRA & 0b11111000) | DIV_FACT_2_2P ;
+	#elif PRESCALLER == DIV_FACT_4P
+	    ADC_ADCSRA = (ADC_ADCSRA & 0b11111000) | DIV_FACT_4P ;
+    #elif PRESCALLER == DIV_FACT_8P
+        ADC_ADCSRA = (ADC_ADCSRA & 0b11111000) | DIV_FACT_8P ;
+	#elif PRESCALLER == DIV_FACT_16P
+	    ADC_ADCSRA = (ADC_ADCSRA & 0b11111000) | DIV_FACT_16P ;
+	#elif PRESCALLER == DIV_FACT_32P
+	    ADC_ADCSRA = (ADC_ADCSRA & 0b11111000) | DIV_FACT_32P ;
+	#elif PRESCALLER == DIV_FACT_64P
+	    ADC_ADCSRA = (ADC_ADCSRA & 0b11111000) | DIV_FACT_64P ;
+	#elif PRESCALLER == DIV_FACT_128P
+	    ADC_ADCSRA = (ADC_ADCSRA & 0b11111000) | DIV_FACT_128P ;
+	#endif
+#endif
+
+}
+TU16 ADC_READ (TU08 channel){
+	if (channel ==1){
+		//adc1
+		ADC_ADMUX = (ADC_ADMUX & 0b11100000) | channel;
+	}
+	SET_BiT(ADC_ADCSRA,ADC_ADSC); //START CONVERSION
+	while(GET_Bit(ADC_ADCSRA,ADC_ADIF)==0); // wait for convension to finish
+	SET_BiT(ADC_ADCSRA,ADC_ADIF);
+	return ADC_HL;
+}
