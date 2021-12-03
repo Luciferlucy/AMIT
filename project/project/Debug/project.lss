@@ -3,33 +3,33 @@ project.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000031e  00000000  00000000  00000074  2**1
+  0 .text         00000326  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  00800060  00000392  2**0
+  1 .data         00000000  00800060  00800060  0000039a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          0000000a  00800060  00800060  00000392  2**0
+  2 .bss          0000000a  00800060  00800060  0000039a  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000392  2**0
+  3 .comment      00000030  00000000  00000000  0000039a  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000003c4  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000003cc  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000110  00000000  00000000  00000400  2**0
+  5 .debug_aranges 00000110  00000000  00000000  00000408  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000ec5  00000000  00000000  00000510  2**0
+  6 .debug_info   00000ec5  00000000  00000000  00000518  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000008d7  00000000  00000000  000013d5  2**0
+  7 .debug_abbrev 000008d7  00000000  00000000  000013dd  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000011b4  00000000  00000000  00001cac  2**0
+  8 .debug_line   000011cc  00000000  00000000  00001cb4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000338  00000000  00000000  00002e60  2**2
+  9 .debug_frame  00000338  00000000  00000000  00002e80  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00007e61  00000000  00000000  00003198  2**0
+ 10 .debug_str    00007e61  00000000  00000000  000031b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000008b8  00000000  00000000  0000aff9  2**0
+ 11 .debug_loc    000008b8  00000000  00000000  0000b019  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000d0  00000000  00000000  0000b8b1  2**0
+ 12 .debug_ranges 000000d0  00000000  00000000  0000b8d1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_macro  000008a5  00000000  00000000  0000b981  2**0
+ 13 .debug_macro  000008a5  00000000  00000000  0000b9a1  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -55,9 +55,9 @@ Disassembly of section .text:
   22:	00 00       	nop
   24:	32 c0       	rjmp	.+100    	; 0x8a <__bad_interrupt>
   26:	00 00       	nop
-  28:	51 c1       	rjmp	.+674    	; 0x2cc <__vector_10>
+  28:	55 c1       	rjmp	.+682    	; 0x2d4 <__vector_10>
   2a:	00 00       	nop
-  2c:	28 c1       	rjmp	.+592    	; 0x27e <__vector_11>
+  2c:	2c c1       	rjmp	.+600    	; 0x286 <__vector_11>
   2e:	00 00       	nop
   30:	2c c0       	rjmp	.+88     	; 0x8a <__bad_interrupt>
   32:	00 00       	nop
@@ -90,7 +90,7 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ee e1       	ldi	r30, 0x1E	; 30
+  66:	e6 e2       	ldi	r30, 0x26	; 38
   68:	f3 e0       	ldi	r31, 0x03	; 3
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
@@ -112,8 +112,8 @@ Disassembly of section .text:
   80:	aa 36       	cpi	r26, 0x6A	; 106
   82:	b2 07       	cpc	r27, r18
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	f7 d0       	rcall	.+494    	; 0x276 <main>
-  88:	48 c1       	rjmp	.+656    	; 0x31a <_exit>
+  86:	fb d0       	rcall	.+502    	; 0x27e <main>
+  88:	4c c1       	rjmp	.+664    	; 0x322 <_exit>
 
 0000008a <__bad_interrupt>:
   8a:	ba cf       	rjmp	.-140    	; 0x0 <__vectors>
@@ -143,8 +143,8 @@ ISR(INT0_vect){
   aa:	ef 93       	push	r30
   ac:	ff 93       	push	r31
 	p2f0();	
-  ae:	e0 91 60 00 	lds	r30, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
-  b2:	f0 91 61 00 	lds	r31, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+  ae:	e0 91 60 00 	lds	r30, 0x0060	; 0x800060 <__data_end>
+  b2:	f0 91 61 00 	lds	r31, 0x0061	; 0x800061 <__data_end+0x1>
   b6:	09 95       	icall
 }
   b8:	ff 91       	pop	r31
@@ -410,144 +410,149 @@ ISR(INT2_vect){
  248:	b9 9a       	sbi	0x17, 1	; 23
 	    SET_BiT(DIO_DDRB,LCD_EN);
  24a:	bb 9a       	sbi	0x17, 3	; 23
- 24c:	87 ea       	ldi	r24, 0xA7	; 167
- 24e:	91 e6       	ldi	r25, 0x61	; 97
- 250:	01 97       	sbiw	r24, 0x01	; 1
- 252:	f1 f7       	brne	.-4      	; 0x250 <LCD_init+0xa>
- 254:	00 c0       	rjmp	.+0      	; 0x256 <LCD_init+0x10>
- 256:	00 00       	nop
-		//SET_BiT(DIO_DDRA,LCD_A5);
-		//SET_BiT(DIO_DDRA,LCD_A6);
-	    //SET_BiT(DIO_DDRA,LCD_A7);
+		SET_BiT(DIO_DDRA,LCD_A4);
+ 24c:	d4 9a       	sbi	0x1a, 4	; 26
+		SET_BiT(DIO_DDRA,LCD_A5);
+ 24e:	d5 9a       	sbi	0x1a, 5	; 26
+		SET_BiT(DIO_DDRA,LCD_A6);
+ 250:	d6 9a       	sbi	0x1a, 6	; 26
+	    SET_BiT(DIO_DDRA,LCD_A7);
+ 252:	d7 9a       	sbi	0x1a, 7	; 26
+ 254:	87 ea       	ldi	r24, 0xA7	; 167
+ 256:	91 e6       	ldi	r25, 0x61	; 97
+ 258:	01 97       	sbiw	r24, 0x01	; 1
+ 25a:	f1 f7       	brne	.-4      	; 0x258 <LCD_init+0x12>
+ 25c:	00 c0       	rjmp	.+0      	; 0x25e <LCD_init+0x18>
+ 25e:	00 00       	nop
 		
 		_delay_ms(100);
 		 LCD_command(0x33);
- 258:	83 e3       	ldi	r24, 0x33	; 51
- 25a:	c1 df       	rcall	.-126    	; 0x1de <LCD_command>
-		 LCD_command(0x32);
- 25c:	82 e3       	ldi	r24, 0x32	; 50
- 25e:	bf df       	rcall	.-130    	; 0x1de <LCD_command>
-		 LCD_command(0x28);
- 260:	88 e2       	ldi	r24, 0x28	; 40
+ 260:	83 e3       	ldi	r24, 0x33	; 51
  262:	bd df       	rcall	.-134    	; 0x1de <LCD_command>
+		 LCD_command(0x32);
+ 264:	82 e3       	ldi	r24, 0x32	; 50
+ 266:	bb df       	rcall	.-138    	; 0x1de <LCD_command>
+		 LCD_command(0x28);
+ 268:	88 e2       	ldi	r24, 0x28	; 40
+ 26a:	b9 df       	rcall	.-142    	; 0x1de <LCD_command>
 		 
 		 LCD_command(0x0C);
- 264:	8c e0       	ldi	r24, 0x0C	; 12
- 266:	bb df       	rcall	.-138    	; 0x1de <LCD_command>
-		 LCD_command(0x01);
- 268:	81 e0       	ldi	r24, 0x01	; 1
- 26a:	b9 df       	rcall	.-142    	; 0x1de <LCD_command>
-		 LCD_command(0x06);
- 26c:	86 e0       	ldi	r24, 0x06	; 6
+ 26c:	8c e0       	ldi	r24, 0x0C	; 12
  26e:	b7 df       	rcall	.-146    	; 0x1de <LCD_command>
- 270:	82 e0       	ldi	r24, 0x02	; 2
+		 LCD_command(0x01);
+ 270:	81 e0       	ldi	r24, 0x01	; 1
+ 272:	b5 df       	rcall	.-150    	; 0x1de <LCD_command>
+		 LCD_command(0x06);
+ 274:	86 e0       	ldi	r24, 0x06	; 6
+ 276:	b3 df       	rcall	.-154    	; 0x1de <LCD_command>
+ 278:	82 e0       	ldi	r24, 0x02	; 2
 		 LCD_command(0x02);
- 272:	b5 cf       	rjmp	.-150    	; 0x1de <LCD_command>
- 274:	08 95       	ret
+ 27a:	b1 cf       	rjmp	.-158    	; 0x1de <LCD_command>
+ 27c:	08 95       	ret
 
-00000276 <main>:
- 276:	e7 df       	rcall	.-50     	; 0x246 <LCD_init>
- 278:	83 e4       	ldi	r24, 0x43	; 67
+0000027e <main>:
+ 27e:	e3 df       	rcall	.-58     	; 0x246 <LCD_init>
+ 280:	83 e4       	ldi	r24, 0x43	; 67
 	//timer_OCR(255);
 	//DIREC();
 	//UART_Init();
 	LCD_init();
 	//LCD_String('helo');
 	LCD_char('C');	
- 27a:	7d df       	rcall	.-262    	; 0x176 <LCD_char>
- 27c:	ff cf       	rjmp	.-2      	; 0x27c <main+0x6>
+ 282:	79 df       	rcall	.-270    	; 0x176 <LCD_char>
+ 284:	ff cf       	rjmp	.-2      	; 0x284 <main+0x6>
 
-0000027e <__vector_11>:
+00000286 <__vector_11>:
 }
 void timer_OCR(TU08 ocr_val){
 	TIM_OCR0 = ocr_val;
 }
 
 ISR(TIMER0_OVF_vect){
- 27e:	1f 92       	push	r1
- 280:	0f 92       	push	r0
- 282:	0f b6       	in	r0, 0x3f	; 63
- 284:	0f 92       	push	r0
- 286:	11 24       	eor	r1, r1
- 288:	2f 93       	push	r18
- 28a:	3f 93       	push	r19
- 28c:	4f 93       	push	r20
- 28e:	5f 93       	push	r21
- 290:	6f 93       	push	r22
- 292:	7f 93       	push	r23
- 294:	8f 93       	push	r24
- 296:	9f 93       	push	r25
- 298:	af 93       	push	r26
- 29a:	bf 93       	push	r27
- 29c:	ef 93       	push	r30
- 29e:	ff 93       	push	r31
+ 286:	1f 92       	push	r1
+ 288:	0f 92       	push	r0
+ 28a:	0f b6       	in	r0, 0x3f	; 63
+ 28c:	0f 92       	push	r0
+ 28e:	11 24       	eor	r1, r1
+ 290:	2f 93       	push	r18
+ 292:	3f 93       	push	r19
+ 294:	4f 93       	push	r20
+ 296:	5f 93       	push	r21
+ 298:	6f 93       	push	r22
+ 29a:	7f 93       	push	r23
+ 29c:	8f 93       	push	r24
+ 29e:	9f 93       	push	r25
+ 2a0:	af 93       	push	r26
+ 2a2:	bf 93       	push	r27
+ 2a4:	ef 93       	push	r30
+ 2a6:	ff 93       	push	r31
 	p2f();
- 2a0:	e0 91 68 00 	lds	r30, 0x0068	; 0x800068 <p2f>
- 2a4:	f0 91 69 00 	lds	r31, 0x0069	; 0x800069 <p2f+0x1>
- 2a8:	09 95       	icall
+ 2a8:	e0 91 68 00 	lds	r30, 0x0068	; 0x800068 <p2f>
+ 2ac:	f0 91 69 00 	lds	r31, 0x0069	; 0x800069 <p2f+0x1>
+ 2b0:	09 95       	icall
 	
 }
- 2aa:	ff 91       	pop	r31
- 2ac:	ef 91       	pop	r30
- 2ae:	bf 91       	pop	r27
- 2b0:	af 91       	pop	r26
- 2b2:	9f 91       	pop	r25
- 2b4:	8f 91       	pop	r24
- 2b6:	7f 91       	pop	r23
- 2b8:	6f 91       	pop	r22
- 2ba:	5f 91       	pop	r21
- 2bc:	4f 91       	pop	r20
- 2be:	3f 91       	pop	r19
- 2c0:	2f 91       	pop	r18
- 2c2:	0f 90       	pop	r0
- 2c4:	0f be       	out	0x3f, r0	; 63
- 2c6:	0f 90       	pop	r0
- 2c8:	1f 90       	pop	r1
- 2ca:	18 95       	reti
+ 2b2:	ff 91       	pop	r31
+ 2b4:	ef 91       	pop	r30
+ 2b6:	bf 91       	pop	r27
+ 2b8:	af 91       	pop	r26
+ 2ba:	9f 91       	pop	r25
+ 2bc:	8f 91       	pop	r24
+ 2be:	7f 91       	pop	r23
+ 2c0:	6f 91       	pop	r22
+ 2c2:	5f 91       	pop	r21
+ 2c4:	4f 91       	pop	r20
+ 2c6:	3f 91       	pop	r19
+ 2c8:	2f 91       	pop	r18
+ 2ca:	0f 90       	pop	r0
+ 2cc:	0f be       	out	0x3f, r0	; 63
+ 2ce:	0f 90       	pop	r0
+ 2d0:	1f 90       	pop	r1
+ 2d2:	18 95       	reti
 
-000002cc <__vector_10>:
+000002d4 <__vector_10>:
 ISR(TIMER0_COMP_vect){
- 2cc:	1f 92       	push	r1
- 2ce:	0f 92       	push	r0
- 2d0:	0f b6       	in	r0, 0x3f	; 63
- 2d2:	0f 92       	push	r0
- 2d4:	11 24       	eor	r1, r1
- 2d6:	2f 93       	push	r18
- 2d8:	3f 93       	push	r19
- 2da:	4f 93       	push	r20
- 2dc:	5f 93       	push	r21
- 2de:	6f 93       	push	r22
- 2e0:	7f 93       	push	r23
- 2e2:	8f 93       	push	r24
- 2e4:	9f 93       	push	r25
- 2e6:	af 93       	push	r26
- 2e8:	bf 93       	push	r27
- 2ea:	ef 93       	push	r30
- 2ec:	ff 93       	push	r31
+ 2d4:	1f 92       	push	r1
+ 2d6:	0f 92       	push	r0
+ 2d8:	0f b6       	in	r0, 0x3f	; 63
+ 2da:	0f 92       	push	r0
+ 2dc:	11 24       	eor	r1, r1
+ 2de:	2f 93       	push	r18
+ 2e0:	3f 93       	push	r19
+ 2e2:	4f 93       	push	r20
+ 2e4:	5f 93       	push	r21
+ 2e6:	6f 93       	push	r22
+ 2e8:	7f 93       	push	r23
+ 2ea:	8f 93       	push	r24
+ 2ec:	9f 93       	push	r25
+ 2ee:	af 93       	push	r26
+ 2f0:	bf 93       	push	r27
+ 2f2:	ef 93       	push	r30
+ 2f4:	ff 93       	push	r31
 	p3f();
- 2ee:	e0 91 66 00 	lds	r30, 0x0066	; 0x800066 <p3f>
- 2f2:	f0 91 67 00 	lds	r31, 0x0067	; 0x800067 <p3f+0x1>
- 2f6:	09 95       	icall
- 2f8:	ff 91       	pop	r31
- 2fa:	ef 91       	pop	r30
- 2fc:	bf 91       	pop	r27
- 2fe:	af 91       	pop	r26
- 300:	9f 91       	pop	r25
- 302:	8f 91       	pop	r24
- 304:	7f 91       	pop	r23
- 306:	6f 91       	pop	r22
- 308:	5f 91       	pop	r21
- 30a:	4f 91       	pop	r20
- 30c:	3f 91       	pop	r19
- 30e:	2f 91       	pop	r18
- 310:	0f 90       	pop	r0
- 312:	0f be       	out	0x3f, r0	; 63
- 314:	0f 90       	pop	r0
- 316:	1f 90       	pop	r1
- 318:	18 95       	reti
+ 2f6:	e0 91 66 00 	lds	r30, 0x0066	; 0x800066 <p3f>
+ 2fa:	f0 91 67 00 	lds	r31, 0x0067	; 0x800067 <p3f+0x1>
+ 2fe:	09 95       	icall
+ 300:	ff 91       	pop	r31
+ 302:	ef 91       	pop	r30
+ 304:	bf 91       	pop	r27
+ 306:	af 91       	pop	r26
+ 308:	9f 91       	pop	r25
+ 30a:	8f 91       	pop	r24
+ 30c:	7f 91       	pop	r23
+ 30e:	6f 91       	pop	r22
+ 310:	5f 91       	pop	r21
+ 312:	4f 91       	pop	r20
+ 314:	3f 91       	pop	r19
+ 316:	2f 91       	pop	r18
+ 318:	0f 90       	pop	r0
+ 31a:	0f be       	out	0x3f, r0	; 63
+ 31c:	0f 90       	pop	r0
+ 31e:	1f 90       	pop	r1
+ 320:	18 95       	reti
 
-0000031a <_exit>:
- 31a:	f8 94       	cli
+00000322 <_exit>:
+ 322:	f8 94       	cli
 
-0000031c <__stop_program>:
- 31c:	ff cf       	rjmp	.-2      	; 0x31c <__stop_program>
+00000324 <__stop_program>:
+ 324:	ff cf       	rjmp	.-2      	; 0x324 <__stop_program>

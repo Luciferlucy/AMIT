@@ -13,7 +13,9 @@ void timer_init(void);
 void SETCALLBACK_TIMER0_OVR (void(*ptf)(void));
 void timer_OCR(TU08);
 void SETCALLBACK_TIMER0_OCR (void(*ptff)(void));
-
+void PWM0_Init(void);
+void PWM0_GEN(TU08 duty);
+void PWM0_Start (void);
 
 
 #endif /* TIMER_H_ */

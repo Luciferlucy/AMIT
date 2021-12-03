@@ -134,7 +134,16 @@ typedef struct{
 #define LCD_RS 1
 #define LCD_RW 2
 #define LCD_EN 3
-
+/**************************************I2C************************/
+#define I2C_TWCR (*((volatile TU08*)0x56))
+#define I2C_TWDR (*((volatile TU08*)0x23))
+#define I2C_TWAR (*((volatile TU08*)0x22))
+#define I2C_TWBR (*((volatile TU08*)0x20))
+#define I2C_TWSR (*((volatile TU08*)0x21))
+#define TWCR_TWEN 2
+#define TWCR_TWSTA 5
+#define TWCR_TWINT 7
+#define TWCR_TWSTO 4
 
 
 #endif /* REGISETERS_H_ */

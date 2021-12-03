@@ -5,6 +5,7 @@
  *  Author: Mina
  */ 
 #include "SPI.h"
+#if SPI_MODE == MASTER
 void SPI_MASTER_INIT(void){
 	CLR_Bit(DIO_DDRB,4);
 	CLR_Bit(DIO_DDRB,5);
@@ -18,12 +19,12 @@ void SPI_MASTER_INIT(void){
 	
 	#if CPOL_FUNC == RIS_FALL
 	CLR_Bit(SPII->SPI_SPCR,SPI_CPOL);
-	#elif CPOL_FUNC == FALL_RIS
+	#else
 	SET_BiT(SPII->SPI_SPCR,SPI_CPOL);
 	#endif
 	#if CPHAL_FUNC == SAMPLE
 	CLR_Bit(SPII->SPI_SPCR,SPI_CPHA);
-	#elif CPHAL_FUNC == SETUP
+	#else
 	SET_BiT(SPII->SPI_SPCR,SPI_CPHA);
 	#endif
 	#if RELATION == DIV_4
@@ -49,6 +50,7 @@ void SPI_MASTER_INIT(void){
 	#endif
 	
 }
+#else
 void SPI_SLAVE_INIT(void){
 	SET_BiT(DIO_DDRB,4);
 	SET_BiT(DIO_DDRB,5);
@@ -56,6 +58,7 @@ void SPI_SLAVE_INIT(void){
 	SET_BiT(DIO_DDRB,7);
 	SPII->SPI_SPCR = 0x40;
 }
+#endif
 void SPI_MASTER_INIT_TRANS(void){
 	CLR_Bit(DIO_PORTB,4);
 }

@@ -19,6 +19,7 @@
 #include "UART/UART.h"
 #include "SPI/SPI.h"
 #include "LCD/LCD.h"
+#include "I2C/I2C.h"
 
 
 #endif /* MAIN_H_ */

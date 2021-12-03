@@ -70,3 +70,14 @@ ISR(TIMER0_OVF_vect){
 ISR(TIMER0_COMP_vect){
 	p3f();
 }
+////////////
+void PWM0_Init(void){
+	DIO_DDRB |= 0x08;
+	TIM_TCCR0 |= 0x68;
+}
+void PWM0_GEN(TU08 duty){
+	TIM_OCR0 = ((duty * 256)/100)-1;
+}
+void PWM0_Start (void){
+	TIM_TCCR0 |=0x01;
+}
