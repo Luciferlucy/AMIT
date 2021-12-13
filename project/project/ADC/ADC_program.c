@@ -51,7 +51,7 @@ TU16 ADC_READ (TU08 channel){
 		ADC_ADMUX = (ADC_ADMUX & 0b11100000) | channel;
 	}
 	SET_BiT(ADC_ADCSRA,ADC_ADSC); //START CONVERSION
-	while(GET_Bit(ADC_ADCSRA,ADC_ADIF)==0); // wait for convension to finish
+	while(GET_Bit(ADC_ADCSRA,ADC_ADIF)==0); // wait for conversion to finish
 	SET_BiT(ADC_ADCSRA,ADC_ADIF);
 	return ADC_HL;
 }

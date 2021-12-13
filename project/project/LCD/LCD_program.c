@@ -62,6 +62,7 @@ void LCD_char(char data){
 	#elif LCD_MODE == 4 
 	SET_BiT(DIO_PORTB,LCD_RS);
 	CLR_Bit(DIO_PORTB,LCD_RW);
+	CLR_Bit(DIO_PORTB,LCD_EN);
 	
 	DIO_PORTA = (data & 0xF0) | (DIO_PORTA & 0x0F);
 	SET_BiT(DIO_PORTB,LCD_EN);
@@ -90,17 +91,19 @@ void LCD_command(char cmd){
 	CLR_Bit(LCD_8BIT_CMD_PORT,LCD_EN);
 	_delay_ms(100);
 	
-	DIO_PORTC = (cmd << 4) | (DIO_PORTC & 0x0F);
+	DIO_PORTC = (cmd << 4) | (DIO_PORTC & 0
+	x0F);
 	SET_BiT(LCD_8BIT_CMD_PORT,LCD_EN);
 	_delay_ms(10);
 	CLR_Bit(LCD_8BIT_CMD_PORT,LCD_EN);
 	_delay_ms(100);
 	
-	_delay_ms(5);
+	_delay_ms(6);
 	//////////////////////////////////////////////
 	#elif LCD_MODE == 4
 	CLR_Bit(DIO_PORTB,LCD_RS);
 	CLR_Bit(DIO_PORTB,LCD_RW);
+	CLR_Bit(DIO_PORTB,LCD_EN);
 	
 	DIO_PORTA = (cmd & 0xF0) | (DIO_PORTA & 0x0F);
 	SET_BiT(DIO_PORTB,LCD_EN);
@@ -122,10 +125,10 @@ void LCD_CLEAR(void){
 	LCD_command(0x01);
 }
 /////////////////////////
-void LCD_String(TU08* data){
+void LCD_String(TU08* str){
 	TU08 i = 0;
-	while(data[i] != '\0'){
-		LCD_char(data[i]);
+	while(str[i] != '\0'){
+		LCD_char(str[i]);
 		i++;
 	}
 }
@@ -133,4 +136,25 @@ void LCD_String(TU08* data){
 void LCD_STRING_XY (TU08 row,TU08 col){
 	TU08 pos[2]={0x80,0xC0};
 	LCD_command(pos[row]+col);
+}
+/////////////////////////////////////
+void LCD_WriteInteger(TS32 num,TU08 kam_5ana)
+{
+	TU32 VALUE;
+	if (num>=0)
+	{
+		for (TU08 i=kam_5ana;i>0;i--)
+		{
+			TU08 ASCII= 48;
+			VALUE=(num % Pow_int(10,(i)) - num % Pow_int(10,(i-1))) / Pow_int(10,(i-1));
+			for (TU08 j=0;j<=9;j++)
+			{
+				if (j==VALUE)
+				{
+					LCD_char(ASCII);
+				}
+				ASCII++;
+			}
+		}
+	}
 }

@@ -14,7 +14,7 @@
 
 
 void DIREC (void);
-
+TU32 Pow_int(TU32 NUM, TU08 POWER);
 
 
 

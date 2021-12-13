@@ -30,7 +30,7 @@
 #define PRESCALLER DIV_FACT_2P
 
 //**types of channels**
-
+//see data sheet 
 
 
 

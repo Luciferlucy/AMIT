@@ -20,6 +20,7 @@
 #include "SPI/SPI.h"
 #include "LCD/LCD.h"
 #include "I2C/I2C.h"
+#include "DC Motor/DC_Motor.h"
 
 
 #endif /* MAIN_H_ */

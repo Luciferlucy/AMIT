@@ -78,10 +78,19 @@
 #define TIM_CS02 2 //change PRESCALLER
 #define TIM_TIFR (*(volatile TU08*)(0x58)) //if no interrupt
 #define TIM_TOV0 0 //if no interrupt
+#define TIM_ICF1 5
+#define TIM_TOV1 2
 #define TIM_TIMSK (*(volatile TU08*)(0x59)) //make interrupt
 #define TIM_TOIE0 0 //make interrupt
+#define TIM_TOIE1 2
 #define TIM_OCIE0 1 //make interrupt
 #define TIM_OCR0 (*(volatile TU08*)(0x5C)) //make interrupt
+#define TIM_TCNT1_H  (*(volatile TU08*)(0x4D))
+#define TIM_TCNT1_L  (*(volatile TU08*)(0x4C))
+#define TIM_TCCR1A (*(volatile TU08*)(0X4F))
+#define TIM_TCCR1B (*(volatile TU08*)(0x4E))
+#define TIM_ICR1_H (*(volatile TU08*)(0x47))
+#define TIM_ICR1_L (*(volatile TU08*)(0x46))
 
 /*************************UART***************************/
 #define UART_UBRRH (*(volatile TU08*)(0X40))

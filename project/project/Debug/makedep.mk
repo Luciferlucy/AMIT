@@ -6,7 +6,11 @@ ADC\ADC_program.c
 
 basics\PINS_Direction.c
 
+DC Motor\DC_MOTOR_program.c
+
 interrupt\External_interrupt.c
+
+I2C\I2C_program.c
 
 LCD\LCD_program.c
 

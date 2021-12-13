@@ -21,20 +21,49 @@ void test1(){
 }
 int main(void)
 {
-	//SETCALLBACK_TIMER0_OVR(test2);
+	init_interrrupt();
+	SETCALLBACK_TIMER1_OVR(test2);
+	DCMOTOR_Init();
+	DCMOTOR_SEtDIR(DIR_CLOCK_WISE);
+	DCMOTOR_SETSPEED(1);
+	////////////////////////////////
+	
 	//SETCALLBACK_TIMER0_OCR (test2);
     //SET_CallBack_INT0 (test1);
-	//init_interrrupt();
-	//timer_init();
+	timer_init();
 	//timer_OCR(255);
 	//DIREC();
-	//UART_Init();
+	UART_Init();
+	adc_init();
+	UART_Rx();
+    ADC_READ(1);
+	
 	LCD_init();
-	//LCD_String('helo');
 	LCD_char('C');	
     while (1) 
     {
+		timer1_init();
+		while ((TIM_TIFR & (1 << TIM_ICF1)) == 0);/* Wait for falling edge */
+		toff = TIM_ICR1_H+TIM_ICR1_L + (65535 * cou);	/* Take count */
+		/* 8MHz Timer freq, sound speed =343 m/s */
+		ton = (double)toff / 466.47;
+	    DCMOTOR_Start();
+		if (ton > 6){
+		    DCMOTOR_SETSPEED(20);
+		}else if (ton >4 || ton <6){
+			DCMOTOR_SETSPEED(10);
+		}else if (ton < 4){
+			DCMOTOR_Stop();
+		}
+		/////////////////////////////////////////
+		/*
+		TU08 data = UART_Rx();
+		if(data){
+			LCD_char(data);
+		}*/
 		
+		
+			
 		/*C2_OUTPUT;
 		D3_OUTPUT;
 		C7_CLEAR; */
@@ -52,6 +81,7 @@ int main(void)
 		cou=0; 
 	}
 		*/
+		
 		
     }
 }

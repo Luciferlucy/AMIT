@@ -9,7 +9,6 @@
 #ifndef I2C_H_
 #define I2C_H_
 #include "I2C_CONFIG.h"
-#define 
 void I2C_Master_Init(void);
 void I2C_Slave_Init(void);
 void I2C_START_Condition(void);

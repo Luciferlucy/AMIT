@@ -23,7 +23,10 @@ main.d main.o: .././main.c .././main.h \
  .././Timer/Timer_Config.h .././Timer/../basics/basic.h .././UART/UART.h \
  .././UART/UART_CONFIG.h .././UART/../basics/basic.h .././SPI/SPI.h \
  .././SPI/SPI_CONFIG.h .././SPI/../basics/basic.h .././LCD/LCD.h \
- .././LCD/LCD_ConFIG.h .././LCD/../basics/basic.h
+ .././LCD/LCD_ConFIG.h .././LCD/../basics/basic.h .././I2C/I2C.h \
+ .././I2C/I2C_CONFIG.h .././I2C/../basics/basic.h \
+ .././DC\ Motor/DC_Motor.h .././DC\ Motor/../Timer/Timer.h \
+ .././DC\ Motor/../basics/basic.h
 
 .././main.h:
 
@@ -104,3 +107,15 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 .././LCD/LCD_ConFIG.h:
 
 .././LCD/../basics/basic.h:
+
+.././I2C/I2C.h:
+
+.././I2C/I2C_CONFIG.h:
+
+.././I2C/../basics/basic.h:
+
+.././DC\ Motor/DC_Motor.h:
+
+.././DC\ Motor/../Timer/Timer.h:
+
+.././DC\ Motor/../basics/basic.h:

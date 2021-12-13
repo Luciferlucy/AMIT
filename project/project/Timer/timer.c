@@ -8,6 +8,10 @@
 #include "Timer.h"
 void (*p2f)(void);
 void (*p3f)(void);
+void (*p4f)(void);
+void SETCALLBACK_TIMER1_OVR (void(*ptf)(void)){
+	p4f=ptf;
+}
 void SETCALLBACK_TIMER0_OVR (void(*ptf)(void)){
 	p2f = ptf;
 }
@@ -80,4 +84,17 @@ void PWM0_GEN(TU08 duty){
 }
 void PWM0_Start (void){
 	TIM_TCCR0 |=0x01;
+}
+////////////
+void timer1_init (void){
+	TIM_TCNT1_H=0;
+	TIM_TCNT1_L =0;
+	TIM_TCCR1A =0;
+	SET_BiT(TIM_TIMSK,TIM_TOIE1);
+	SET_BiT(TIM_TIFR,TIM_ICF1);
+	SET_BiT(TIM_TIFR,TIM_TOV1);
+}
+//////
+ISR(TIMER1_OVF_vect){
+	p4f();
 }

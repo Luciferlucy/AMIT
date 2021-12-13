@@ -37,6 +37,8 @@ SUBDIRS :=  \
 ../basics \
 ../ADC \
 ../LCD \
+../I2C \
+../DC\ Motor \
 ../SPI \
 ../UART \
 ../Timer \
@@ -47,7 +49,9 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../ADC/ADC_program.c \
 ../basics/PINS_Direction.c \
+../DC\ Motor/DC_MOTOR_program.c \
 ../interrupt/External_interrupt.c \
+../I2C/I2C_program.c \
 ../LCD/LCD_program.c \
 ../main.c \
 ../SPI/SPI_program.c \
@@ -65,7 +69,9 @@ ASM_SRCS +=
 OBJS +=  \
 ADC/ADC_program.o \
 basics/PINS_Direction.o \
+DC\ Motor/DC_MOTOR_program.o \
 interrupt/External_interrupt.o \
+I2C/I2C_program.o \
 LCD/LCD_program.o \
 main.o \
 SPI/SPI_program.o \
@@ -76,7 +82,9 @@ UART/UART_program.o
 OBJS_AS_ARGS +=  \
 ADC/ADC_program.o \
 basics/PINS_Direction.o \
+"DC Motor/DC_MOTOR_program.o" \
 interrupt/External_interrupt.o \
+I2C/I2C_program.o \
 LCD/LCD_program.o \
 main.o \
 SPI/SPI_program.o \
@@ -87,7 +95,9 @@ UART/UART_program.o
 C_DEPS +=  \
 ADC/ADC_program.d \
 basics/PINS_Direction.d \
+DC\ Motor/DC_MOTOR_program.d \
 interrupt/External_interrupt.d \
+I2C/I2C_program.d \
 LCD/LCD_program.d \
 main.d \
 SPI/SPI_program.d \
@@ -98,7 +108,9 @@ UART/UART_program.d
 C_DEPS_AS_ARGS +=  \
 ADC/ADC_program.d \
 basics/PINS_Direction.d \
+"DC Motor/DC_MOTOR_program.d" \
 interrupt/External_interrupt.d \
+I2C/I2C_program.d \
 LCD/LCD_program.d \
 main.d \
 SPI/SPI_program.d \
@@ -134,7 +146,21 @@ basics/PINS_Direction.o: ../basics/PINS_Direction.c
 	@echo Finished building: $<
 	
 
+DC\ Motor/DC_MOTOR_program.o: ../DC\ Motor/DC_MOTOR_program.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 interrupt/External_interrupt.o: ../interrupt/External_interrupt.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+I2C/I2C_program.o: ../I2C/I2C_program.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

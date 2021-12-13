@@ -13,9 +13,9 @@ void LCD_init(void);
 void LCD_char(char data);
 void LCD_command(char cmd);
 void LCD_CLEAR(void);
-void LCD_String(TU08* data);
+void LCD_String(TU08* str);
 void LCD_STRING_XY (TU08 row,TU08 col);
-
+void LCD_WriteInteger(TS32 num,TU08 kam_5ana);
 
 
 
