@@ -36,9 +36,9 @@ SUBDIRS :=  \
 ../interrupt \
 ../basics \
 ../ADC \
-../LCD \
 ../I2C \
 ../DC\ Motor \
+../LCCD \
 ../SPI \
 ../UART \
 ../Timer \
@@ -52,7 +52,7 @@ C_SRCS +=  \
 ../DC\ Motor/DC_MOTOR_program.c \
 ../interrupt/External_interrupt.c \
 ../I2C/I2C_program.c \
-../LCD/LCD_program.c \
+../LCCD/LCD_PROGRAM.c \
 ../main.c \
 ../SPI/SPI_program.c \
 ../ssd/ssd_program.c \
@@ -72,7 +72,7 @@ basics/PINS_Direction.o \
 DC\ Motor/DC_MOTOR_program.o \
 interrupt/External_interrupt.o \
 I2C/I2C_program.o \
-LCD/LCD_program.o \
+LCCD/LCD_PROGRAM.o \
 main.o \
 SPI/SPI_program.o \
 ssd/ssd_program.o \
@@ -85,7 +85,7 @@ basics/PINS_Direction.o \
 "DC Motor/DC_MOTOR_program.o" \
 interrupt/External_interrupt.o \
 I2C/I2C_program.o \
-LCD/LCD_program.o \
+LCCD/LCD_PROGRAM.o \
 main.o \
 SPI/SPI_program.o \
 ssd/ssd_program.o \
@@ -98,7 +98,7 @@ basics/PINS_Direction.d \
 DC\ Motor/DC_MOTOR_program.d \
 interrupt/External_interrupt.d \
 I2C/I2C_program.d \
-LCD/LCD_program.d \
+LCCD/LCD_PROGRAM.d \
 main.d \
 SPI/SPI_program.d \
 ssd/ssd_program.d \
@@ -111,7 +111,7 @@ basics/PINS_Direction.d \
 "DC Motor/DC_MOTOR_program.d" \
 interrupt/External_interrupt.d \
 I2C/I2C_program.d \
-LCD/LCD_program.d \
+LCCD/LCD_PROGRAM.d \
 main.d \
 SPI/SPI_program.d \
 ssd/ssd_program.d \
@@ -167,7 +167,7 @@ I2C/I2C_program.o: ../I2C/I2C_program.c
 	@echo Finished building: $<
 	
 
-LCD/LCD_program.o: ../LCD/LCD_program.c
+LCCD/LCD_PROGRAM.o: ../LCCD/LCD_PROGRAM.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

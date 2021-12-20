@@ -12,7 +12,7 @@ interrupt\External_interrupt.c
 
 I2C\I2C_program.c
 
-LCD\LCD_program.c
+LCCD\LCD_PROGRAM.c
 
 main.c
 

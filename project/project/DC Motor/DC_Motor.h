@@ -22,6 +22,4 @@ void DCMOTOR_Start(void);
 void DCMOTOR_Stop(void);
 
 
-
-
 #endif /* DC_MOTOR_H_ */

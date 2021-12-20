@@ -8,6 +8,8 @@
 void DCMOTOR_Init (void){
 	SET_BiT(DIO_DDRC,3);
 	SET_BiT(DIO_DDRC,4);
+	SET_BiT(DIO_DDRC,5);
+	SET_BiT(DIO_DDRC,6);
 	PWM0_Init();
 }
 void DCMOTOR_SEtDIR(DCMOTOR_DIR dir){
@@ -31,3 +33,5 @@ void DCMOTOR_Stop(void){
 	C3_CLEAR;
 	C4_CLEAR;
 }
+
+

@@ -1,7 +1,5 @@
-LCD/LCD_program.d LCD/LCD_program.o: ../LCD/LCD_program.c ../LCD/LCD.h \
- ../LCD/LCD_ConFIG.h ../LCD/../basics/basic.h \
- ../LCD/../basics/Pins_config.h ../LCD/../basics/Regiseters.h \
- ../LCD/../basics/stdtypes.h \
+LCCD/LCD_PROGRAM.d LCCD/LCD_PROGRAM.o: ../LCCD/LCD_PROGRAM.c \
+ ../LCCD/LCD.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -13,22 +11,14 @@ LCD/LCD_program.d LCD/LCD_program.o: ../LCD/LCD_program.c ../LCD/LCD.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../LCD/../basics/bits.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
+ ../LCCD/LCD_CONFIG.h ../LCCD/../basics/basic.h \
+ ../LCCD/../basics/Pins_config.h ../LCCD/../basics/Regiseters.h \
+ ../LCCD/../basics/stdtypes.h ../LCCD/../basics/bits.h
 
-../LCD/LCD.h:
-
-../LCD/LCD_ConFIG.h:
-
-../LCD/../basics/basic.h:
-
-../LCD/../basics/Pins_config.h:
-
-../LCD/../basics/Regiseters.h:
-
-../LCD/../basics/stdtypes.h:
+../LCCD/LCD.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -52,10 +42,20 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-../LCD/../basics/bits.h:
-
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
+
+../LCCD/LCD_CONFIG.h:
+
+../LCCD/../basics/basic.h:
+
+../LCCD/../basics/Pins_config.h:
+
+../LCCD/../basics/Regiseters.h:
+
+../LCCD/../basics/stdtypes.h:
+
+../LCCD/../basics/bits.h:

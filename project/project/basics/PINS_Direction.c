@@ -40,7 +40,7 @@ PINS pins[]={
 	{C,PiN6,HIGH,OUT},
 	{C,PiN7,HIGH,OUT},
 		
-	{D,PiN0,HIGH,IN},
+	{D,PiN0,HIGH,OUT},
 	{D,PiN1,HIGH,OUT},
 	{D,PiN2,HIGH,IN},
 	{D,PiN3,HIGH,OUT},

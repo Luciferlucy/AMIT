@@ -1,0 +1,5 @@
+MATHMATICS.d MATHMATICS.o: .././MATHMATICS.c .././MATHMATICS.h .././STD.h
+
+.././MATHMATICS.h:
+
+.././STD.h:

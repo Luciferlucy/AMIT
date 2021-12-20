@@ -12,7 +12,7 @@
 ////////////////////////////////////////////////
 //External interrupt pins//
 #define EXIT_INT0 ENABLED
-#define EXIT_INT1 DISABLED
+#define EXIT_INT1 ENABLED
 #define EXIT_INT2 DISABLED
 ///////////////////////////////
 //types of edges//
@@ -28,7 +28,7 @@
 	}exit_Edges; */
 ///////////////////////////////////////
 // making each interrupt of the the edge we want//
-#define EXIT_INT0_Edge Raising_edge
+#define EXIT_INT0_Edge Both_edges
 #define EXIT_INT1_Edge Both_edges
 #define EXIT_INT2_Edge Both_edges
 

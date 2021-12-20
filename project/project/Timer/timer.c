@@ -63,6 +63,7 @@ void timer_init(void){
     SET_BiT(TIM_TIMSK,TIM_OCIE0);
 #endif
 }
+ 
 void timer_OCR(TU08 ocr_val){
 	TIM_OCR0 = ocr_val;
 }
@@ -76,14 +77,17 @@ ISR(TIMER0_COMP_vect){
 }
 ////////////
 void PWM0_Init(void){
-	DIO_DDRB |= 0x08;
-	TIM_TCCR0 |= 0x68;
+	//DIO_DDRB |= 0x08;
+	//TIM_TCCR0 |= 0x68;
+	TCCR2 |= 0x68;
 }
 void PWM0_GEN(TU08 duty){
-	TIM_OCR0 = ((duty * 256)/100)-1;
+//	TIM_OCR0 = ((duty * 256)/100)-1;
+	OCR2 =((duty * 256)/100)-1;
 }
 void PWM0_Start (void){
-	TIM_TCCR0 |=0x01;
+	//TIM_TCCR0 |=0x01;
+	TCCR2 |=0x01;
 }
 ////////////
 void timer1_init (void){

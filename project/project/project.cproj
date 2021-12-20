@@ -224,13 +224,13 @@
     <Compile Include="I2C\I2C_program.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LCD\LCD.h">
+    <Compile Include="LCCD\LCD.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LCD\LCD_ConFIG.h">
+    <Compile Include="LCCD\LCD_CONFIG.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LCD\LCD_program.c">
+    <Compile Include="LCCD\LCD_PROGRAM.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
@@ -277,9 +277,9 @@
     <Folder Include="interrupt" />
     <Folder Include="basics" />
     <Folder Include="ADC" />
-    <Folder Include="LCD" />
     <Folder Include="I2C" />
     <Folder Include="DC Motor" />
+    <Folder Include="LCCD" />
     <Folder Include="SPI" />
     <Folder Include="UART" />
     <Folder Include="Timer" />

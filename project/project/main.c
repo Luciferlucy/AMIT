@@ -5,82 +5,88 @@
  * Author : Mina
  */ 
 #include "main.h"
-volatile int cou=0;
-int total =100;
-int toff;
-int ton;
+#include "string.h"
+int sensor_working =0;
+int rising_edge=0;
+int timer_counter=0;
+float distance ;
+float distance_str[10];
+
+servo_init()
+{
+	
+	TCCR1A|=(1<<COM1A1)|(1<<COM1B1)|(1<<WGM11);        //NON Inverted PWM
+	TCCR1B|=(1<<WGM13)|(1<<WGM12)|(1<<CS11)|(1<<CS10); //PRESCALER=64 MODE 14(FAST PWM) extremeele
+	ICR1=4999;  //fPWM=50Hz (Period = 20ms Standard).
+
+	//DDRD|=(1<<5);   //PWM Pins as Out
+}
+
+float set_degree(int d)
+{
+	//OCR1A=d;
+	OCR1A =160+((22*d)/9);
+}
 void test2(){
-	cou++;
-	//C2_OUTPUT;
-	//SET_BiT(PORTC,2);
+	if(sensor_working==1){
+		if(rising_edge==0){
+			TIM_TCNT0=0x00;
+			rising_edge=1;
+			timer_counter=0;
+		}
+		else{
+			distance=(timer_counter*256+TIM_TCNT0)/466;
+			lcd_goto_xy(1,0);
+			itoa(distance -4 ,distance_str,10);
+			strcat(distance_str, " cm ");
+			lcd_write_word(distance_str);
+			_delay_ms(40);
+			timer_counter=0;
+			rising_edge=0;
+		}
+	}
 }
 void test1(){
-	C2_OUTPUT;	
-	_delay_ms(1000);
-	C2_CLEAR;
+	timer_counter++;
+	
+	 if(timer_counter >730){
+		 TIM_TCNT0=0x00;
+		 sensor_working=0;
+		 rising_edge=0;
+		 timer_counter=0;
+	 }
 }
 int main(void)
 {
+	servo_init();
+	lcd_init();
+	lcd_write_word("Distance is");
+	_delay_ms(10);
 	init_interrrupt();
-	SETCALLBACK_TIMER1_OVR(test2);
-	DCMOTOR_Init();
-	DCMOTOR_SEtDIR(DIR_CLOCK_WISE);
-	DCMOTOR_SETSPEED(1);
-	////////////////////////////////
-	
-	//SETCALLBACK_TIMER0_OCR (test2);
-    //SET_CallBack_INT0 (test1);
+	sei();
 	timer_init();
-	//timer_OCR(255);
-	//DIREC();
-	UART_Init();
-	adc_init();
-	UART_Rx();
-    ADC_READ(1);
-	
-	LCD_init();
-	LCD_char('C');	
+	////////////////////////////////
+	SETCALLBACK_TIMER0_OVR(test1);
+	DIREC();
+	D2_OUTPUT;
     while (1) 
     {
-		timer1_init();
-		while ((TIM_TIFR & (1 << TIM_ICF1)) == 0);/* Wait for falling edge */
-		toff = TIM_ICR1_H+TIM_ICR1_L + (65535 * cou);	/* Take count */
-		/* 8MHz Timer freq, sound speed =343 m/s */
-		ton = (double)toff / 466.47;
-	    DCMOTOR_Start();
-		if (ton > 6){
-		    DCMOTOR_SETSPEED(20);
-		}else if (ton >4 || ton <6){
-			DCMOTOR_SETSPEED(10);
-		}else if (ton < 4){
-			DCMOTOR_Stop();
-		}
-		/////////////////////////////////////////
-		/*
-		TU08 data = UART_Rx();
-		if(data){
-			LCD_char(data);
-		}*/
+	SET_CallBack_INT0 (test2);
+  if(!sensor_working){
+	  D0_OUTPUT;
+	  _delay_us(15);
+	 D0_CLEAR;
+	  sensor_working=1;
+  }
+	_delay_us(1000);
+  set_degree(20);
+  _delay_us(500);
+  set_degree(90);
+  _delay_us(1000);
+  set_degree(180);
+  _delay_us(1000);
 		
 		
-			
-		/*C2_OUTPUT;
-		D3_OUTPUT;
-		C7_CLEAR; */
-		/*
-		cou++;
-		ton =100;
-		toff = total-ton;
-		if (cou<=ton){
-			SET_BiT(DIO_PORTD,3);
-			
-		}else if (cou < total){
-			CLR_Bit(DIO_PORTD,3);
-			
-		}else{
-		cou=0; 
-	}
-		*/
 		
 		
     }

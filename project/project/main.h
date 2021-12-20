@@ -12,15 +12,17 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <stdlib.h>
+
 #include "interrupt/External_interrupt.h"
 #include "ssd/ssd.h"
 #include "ADC/ADC.h"
 #include "Timer/Timer.h"
 #include "UART/UART.h"
 #include "SPI/SPI.h"
-#include "LCD/LCD.h"
+#include "LCCD/LCD.h"
 #include "I2C/I2C.h"
 #include "DC Motor/DC_Motor.h"
-
+#include "LCD_driver/LCD_driver/LCD.h"
 
 #endif /* MAIN_H_ */
