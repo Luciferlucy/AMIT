@@ -4,6 +4,8 @@
  * Created: 11/15/2021 8:05:51 PM
  *  Author: Mina
  */ 
+#define  F_CPU 16000000UL
+#include <util/delay.h>
 #include <avr/interrupt.h>
 #include "Timer.h"
 void (*p2f)(void);
@@ -79,24 +81,33 @@ ISR(TIMER0_COMP_vect){
 void PWM0_Init(void){
 	//DIO_DDRB |= 0x08;
 	//TIM_TCCR0 |= 0x68;
-	TCCR2 |= 0x68;
+	//TCCR2 |= 0x68;
+	TCCR1A |= 0b10100001;
+	//TCCR1A |= 0b10100010;
+	//TCCR1B |= 0b00011000;
+    TCCR1B |=0x04;
+	ICR1=4999;
 }
 void PWM0_GEN(TU08 duty){
 //	TIM_OCR0 = ((duty * 256)/100)-1;
-	OCR2 =((duty * 256)/100)-1;
+	//OCR2 =((duty * 256)/100)-1;
+	//OCR1B =((duty * 256)/100)-1;
+	OCR1B =duty+40;
+	//OCR1A =((duty * 256)/100)-1;
+	
 }
 void PWM0_Start (void){
 	//TIM_TCCR0 |=0x01;
-	TCCR2 |=0x01;
+  //TCCR2 |=0x01;
+	TCCR1A |=0x01;
 }
 ////////////
 void timer1_init (void){
-	TIM_TCNT1_H=0;
-	TIM_TCNT1_L =0;
-	TIM_TCCR1A =0;
 	SET_BiT(TIM_TIMSK,TIM_TOIE1);
-	SET_BiT(TIM_TIFR,TIM_ICF1);
-	SET_BiT(TIM_TIFR,TIM_TOV1);
+	//SET_BiT(TIM_TIFR,TIM_ICF1);
+	//SET_BiT(TIM_TIFR,TIM_TOV1);
+	SET_BiT(TCCR1B,CS12);
+	//SET_BiT(TCCR1B,CS10);
 }
 //////
 ISR(TIMER1_OVF_vect){

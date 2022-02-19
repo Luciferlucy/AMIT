@@ -20,6 +20,9 @@ void DCMOTOR_SEtDIR(DCMOTOR_DIR dir);
 void DCMOTOR_SETSPEED(TU08 sped);
 void DCMOTOR_Start(void);
 void DCMOTOR_Stop(void);
-
+void RIGHT (void);
+void LEFT (void);
+void DCMOTOR_LEFT(void);
+void DCMOTOR_RIGHT(void);
 
 #endif /* DC_MOTOR_H_ */
